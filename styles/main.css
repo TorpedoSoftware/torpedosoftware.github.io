@@ -130,7 +130,7 @@ button {
 	border: none;
 	color: var(--text_color);
 	padding: 15px 32px;
-	border-radius: 4px;
+	border-radius: 5px;
 	text-align: center;
 	display: inline-block;
 	transition-duration: 0.3s;
@@ -209,12 +209,16 @@ button:hover {
 	justify-content: space-around;
 }
 
+.rounded {
+	border-radius: 5px;
+}
+
 .card {
 	background-color: var(--accent_color);
 	padding: 5px;
 	border: none;
 	color: white;
-	border-radius: 2%;
+	border-radius: 5px;
 	text-align: center;
 	display: inline-block;
 	box-shadow:0 2px 5px 0 rgba(0,0,0,0.2),0 2px 10px 0 rgba(0,0,0,0.3);
