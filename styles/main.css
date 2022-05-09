@@ -206,7 +206,7 @@ button:hover {
 	gap: 20px;
 	grid-template-columns: 27% 27% 27%;
 	padding: 10px;
-	justify-content: start;
+	justify-content: space-around;
 }
 
 .card {
