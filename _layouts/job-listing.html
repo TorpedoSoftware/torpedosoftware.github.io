@@ -22,3 +22,11 @@ layout: default
     <li>{{ comp }}</li>
     {% endfor %}
 </div>
+<br>
+<div class="card">
+    {% if page.apply-link %}
+    <a class = "fill-div" href="{{ page.apply-link }}" target="_blank" rel="noopener noreferrer" style="color: #ffffff;">Apply Now</a>
+    {% else %}
+    <p style="color: #9e9e9e; margin: 0px; padding: 10px;">Not Currently Accepting Applications</p>
+    {% endif %}
+</div>
