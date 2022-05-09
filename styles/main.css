@@ -432,7 +432,7 @@ button:hover {
 		font-size: 18px;
 	}
 
-	/* .menu {
+	.menu {
 		flex-direction: column;
 	}
 
@@ -447,5 +447,5 @@ button:hover {
 		max-height: 0;
 		top: 70px;
 		left: 0px;
-	} */
+	}
 }
