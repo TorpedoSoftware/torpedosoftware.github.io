@@ -14,14 +14,15 @@ url: /
 <div id="Team">
 	<h2>Meet The Team</h2>
 	<div class="team-grid">
-		{% for team_member in site.team_members %}
+		{% assign team = site.team_members | sort: "display_order" %}
+		{% for member in team %}
 		<div style="display: flex; flex-direction: column;align-items: center;">
 			<br>
 			<figure class="tint">
-				<img src="{{ team_member.image }}" alt="{{ team_member.name }}" class="circle" style="width: 100%; height: 100%;">
+				<img src="{{ member.image }}" alt="{{ member.name }}" class="circle" style="width: 100%; height: 100%;">
 			</figure>
-			<h3 style="margin: 2px;">{{ team_member.name }}</h3>
-			<p style="margin: 2px;">{{ team_member.position }}</p>
+			<h3 style="margin: 2px;">{{ member.name }}</h3>
+			<p style="margin: 2px;">{{ member.position }}</p>
 		</div>
 		{% endfor %}
 		<div style="display: flex; flex-direction: column;align-items: center;">
