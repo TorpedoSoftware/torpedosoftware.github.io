@@ -180,7 +180,7 @@ button:hover {
 
 .body-content {
 	position: relative;
-	padding: 90px 15% 90px 15%;
+	padding: 20px 15% 90px 15%;
 	overflow: hidden;
 }
 
@@ -393,7 +393,7 @@ button:hover {
 	}
 
 	.body-content {
-		padding: 90px 10% 90px 10%;
+		padding: 20px 10% 90px 10%;
 	}
 
 	body {
