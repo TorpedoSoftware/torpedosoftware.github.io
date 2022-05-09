@@ -14,22 +14,16 @@ url: /
 <div id="Team">
 	<h2>Meet The Team</h2>
 	<div class="team-grid">
+		{% for team_member in site.team_members %}
 		<div style="display: flex; flex-direction: column;align-items: center;">
 			<br>
 			<figure class="tint">
-				<img src="/assets/zack.jpg" alt="Zack" class="circle" style="width: 100%; height: 100%;">
+				<img src="{{ team_member.image }}" alt="{{ team_member.name }}" class="circle" style="width: 100%; height: 100%;">
 			</figure>
-			<h3 style="margin: 2px;">Zack Ovits</h3>
-			<p style="margin: 2px;">Founder, VP of Engineering</p>
+			<h3 style="margin: 2px;">{{ team_member.name }}</h3>
+			<p style="margin: 2px;">{{ team_member.position }}</p>
 		</div>
-		<div style="display: flex; flex-direction: column;align-items: center;">
-			<br>
-			<figure class="tint">
-				<img src="/assets/dan.jpg" alt="Dan" class="circle" style="width: 100%; height: 100%;">
-			</figure>
-			<h3 style="margin: 2px;">Dan Fox</h3>
-			<p style="margin: 2px;">Head of Design & UX</p>
-		</div>
+		{% endfor %}
 		<div style="display: flex; flex-direction: column;align-items: center;">
 			<br>
 			<figure class="tint">

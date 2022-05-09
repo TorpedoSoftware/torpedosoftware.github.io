@@ -1,0 +1,6 @@
+collections_dir: collections
+collections:
+  team_members:
+    order:
+      - zackovits.md
+      - danfox.md
