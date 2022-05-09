@@ -1,4 +1,8 @@
 collections_dir: collections
 collections:
   team_members:
-    sort_by: display_order
+    output: false
+  projects:
+    output: true
+  jobs:
+    output: true

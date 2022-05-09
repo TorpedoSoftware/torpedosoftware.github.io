@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<h2>{{ page.job-title }}</h2>
+<div style="width: 85%;">
+	<p>{{ page.job-intro }}</p>
+	<h3>Role overview:</h3>
+	<p><span class="accent">Type:</span> {{ page.job-type }}</p>
+	<p><span class="accent">Location:</span> {{ page.job-location }}</p>
+	<p><span class="accent">Duration:</span> {{ page.job-duration }}</p>
+	<p><span class="accent">Description:</span> {{ page.job-desc }}</p>
+	<h3>You are:</h3>
+    {% for req in page.job-requirements %}
+    <li>{{ req }}</li>
+    {% endfor %}
+	<h3>You will:</h3>
+    {% for resp in page.job-responsibilities %}
+    <li>{{ resp }}</li>
+    {% endfor %}
+	<h3>You'll love:</h3>
+    {% for comp in page.job-compensation %}
+    <li>{{ comp }}</li>
+    {% endfor %}
+</div>

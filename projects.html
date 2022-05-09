@@ -9,14 +9,16 @@ url: /projects
 	Torpedo Software's dedication towards providing <span class="accent">valuable</span> and <span class="accent">empowering</span> products shines through in everything we create.
 </p>
 <hr>
-<h2>Projects</h2>
 <div class="team-grid">
+	{% assign projects = site.projects | sort: "display_order" %}
+	{% for project in projects %}
 	<div class="card">
-		<div class = "fill-div">
+		<a class = "fill-div" href="{{ project.url }}">
 			<br>
-			<img src="/assets/lualearning.jpg" alt="Lua Learning logo" class="rounded" style="width: 80%;">
-			<h3 style="color: #ffffff;">Lua Learning</h3>
-			<p style="color: #a7a9ae;">Interactive education platform</p>
-		</div>
+			<img src="{{ project.image }}" alt="{{ project.title }} icon" class="rounded" style="width: 80%;">
+			<h3 style="color: #ffffff;">{{ project.title }}</h3>
+			<p style="color: #a7a9ae;">{{ project.desc }}</p>
+		</a>
 	</div>
+	{% endfor %}
 </div>

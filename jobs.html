@@ -14,12 +14,15 @@ url: /jobs
 <hr>
 <h2>Roles</h2>
 <div class="team-grid">
+	{% assign jobs = site.jobs | sort: "display_order" %}
+	{% for job in jobs %}
 	<div class="card">
-		<a class = "fill-div" href="/jobs/portuguese-translator">
+		<a class = "fill-div" href="{{ job.url }}">
 			<br>
-			<img src="/assets/translator.jpg" alt="Robots speaking multiple languages" class="rounded" style="width: 80%;">
-			<h3 style="color: #ffffff;">Portuguese Translator</h3>
-			<p style="color: #a7a9ae;">Contractor Position</p>
+			<img src="{{ job.image }}" alt="{{ job.title }} icon" class="rounded" style="width: 80%;">
+			<h3 style="color: #ffffff;">{{ job.job-title }}</h3>
+			<p style="color: #a7a9ae;">{{ job.job-type }}</p>
 		</a>
 	</div>
+	{% endfor %}
 </div>
