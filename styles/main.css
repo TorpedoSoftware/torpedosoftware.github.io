@@ -180,7 +180,7 @@ button:hover {
 
 .body-content {
 	position: relative;
-	padding: 90px 10% 90px 10%;
+	padding: 90px 15% 90px 15%;
 	overflow: hidden;
 }
 
@@ -386,6 +386,10 @@ button:hover {
 	/* Mobile portrait version */
 	.team-grid {
 		grid-template-columns: 60%;
+	}
+
+	.body-content {
+		padding: 90px 10% 90px 10%;
 	}
 
 	body {
