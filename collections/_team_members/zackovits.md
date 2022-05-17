@@ -1,6 +1,6 @@
 ---
 name: Zack Ovits
-position: Founder, VP of Engineering
+position: Founder + CEO
 image: /assets/zack.jpg
 display_order: 1
 ---
