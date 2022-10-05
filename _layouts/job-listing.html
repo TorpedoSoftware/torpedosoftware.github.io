@@ -10,23 +10,23 @@ layout: default
 	<p><span class="accent">Duration:</span> {{ page.job-duration }}</p>
 	<p><span class="accent">Description:</span> {{ page.job-desc }}</p>
 	<h3>You are:</h3>
-    {% for req in page.job-requirements %}
-    <li>{{ req }}</li>
-    {% endfor %}
+	{% for req in page.job-requirements %}
+	<li>{{ req }}</li>
+	{% endfor %}
 	<h3>You will:</h3>
-    {% for resp in page.job-responsibilities %}
-    <li>{{ resp }}</li>
-    {% endfor %}
+	{% for resp in page.job-responsibilities %}
+	<li>{{ resp }}</li>
+	{% endfor %}
 	<h3>You'll love:</h3>
-    {% for comp in page.job-compensation %}
-    <li>{{ comp }}</li>
-    {% endfor %}
+	{% for comp in page.job-compensation %}
+	<li>{{ comp }}</li>
+	{% endfor %}
 </div>
 <br>
 <div class="card">
-    {% if page.apply-link %}
-    <a class = "fill-div" href="{{ page.apply-link }}" target="_blank" rel="noopener noreferrer" style="color: #ffffff;">Apply Now</a>
-    {% else %}
-    <p style="color: #9e9e9e; margin: 0px; padding: 10px;">Not Currently Accepting Applications</p>
-    {% endif %}
+	{% if page.apply-link %}
+	<a class = "fill-div" href="{{ page.apply-link }}" target="_blank" rel="noopener noreferrer" style="color: #ffffff;">Apply Now</a>
+	{% else %}
+	<p style="color: #9e9e9e; margin: 0px; padding: 10px;">Not Currently Accepting Applications</p>
+	{% endif %}
 </div>
