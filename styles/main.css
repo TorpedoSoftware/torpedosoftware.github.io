@@ -204,7 +204,7 @@ button:hover {
 .team-grid {
 	display: grid;
 	gap: 20px;
-	grid-template-columns: 27% 27% 27%;
+	grid-template-columns: 24% 24% 24% 24%;
 	padding: 10px;
 	justify-content: space-around;
 }
