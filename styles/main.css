@@ -389,7 +389,7 @@ button:hover {
 @media (max-width: 900px) {
 	/* Mobile portrait version */
 	.team-grid {
-		grid-template-columns: 60%;
+		grid-template-columns: 48% 48%;
 	}
 
 	.body-content {
