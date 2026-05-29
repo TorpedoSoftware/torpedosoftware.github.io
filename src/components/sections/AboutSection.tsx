@@ -23,7 +23,7 @@ export function AboutSection({ about }: AboutSectionProps) {
               key={pillar.title}
               className="flex flex-col gap-[var(--space-3)] rounded-lg border border-[var(--color-border-subtle)] bg-surface p-[var(--space-6)]"
             >
-              <h3 className="text-heading-sm text-primary">{pillar.title}</h3>
+              <h3 className="font-display uppercase text-heading-md text-primary">{pillar.title}</h3>
               <p className="text-body text-text-secondary">{pillar.description}</p>
             </div>
           ))}

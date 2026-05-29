@@ -15,7 +15,7 @@ function MemberCard({ member }: { member: TeamMember }) {
         className="h-32 w-32 rounded-full object-cover ring-2 ring-[var(--color-primary-soft)]"
       />
       <div>
-        <h3 className="text-heading-sm text-text-primary">{member.name}</h3>
+        <h3 className="font-display text-heading-sm text-text-primary">{member.name}</h3>
         <p className="text-body-sm text-text-secondary">{member.role}</p>
       </div>
       <SocialLinks links={member.links} />
@@ -41,7 +41,7 @@ export function TeamSection({ team }: TeamSectionProps) {
             />
           </span>
           <div>
-            <h3 className="text-heading-sm text-text-primary group-hover:text-primary">You?</h3>
+            <h3 className="font-display text-heading-sm text-text-primary group-hover:text-primary">You?</h3>
             <p className="text-body-sm text-text-secondary">View open roles</p>
           </div>
         </a>

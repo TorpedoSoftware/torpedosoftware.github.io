@@ -27,7 +27,7 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
         className={`flex flex-col gap-[var(--space-4)] ${featured ? "p-[var(--space-7)]" : "p-[var(--space-5)]"}`}
       >
         <h3
-          className={`text-text-primary group-hover:text-primary ${featured ? "text-heading-lg" : "text-heading-md"}`}
+          className={`font-display uppercase text-text-primary group-hover:text-primary ${featured ? "text-heading-lg" : "text-heading-md"}`}
         >
           {project.title}
         </h3>

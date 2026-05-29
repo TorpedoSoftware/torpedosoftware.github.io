@@ -22,7 +22,7 @@ const variantClasses: Record<ButtonVariant, string> = {
     "bg-primary text-primary-contrast hover:bg-primary-hover active:bg-primary-pressed shadow-1 hover:shadow-2",
   secondary:
     "border border-[var(--color-border)] bg-surface text-text-primary hover:bg-primary-soft active:bg-primary-soft",
-  tertiary: "text-primary hover:bg-primary-soft active:bg-primary-soft",
+  tertiary: "text-text-primary hover:bg-primary-soft active:bg-primary-soft",
   ghost: "text-text-secondary hover:bg-[var(--color-surface-sunken)] active:bg-[var(--color-surface-sunken)]",
   danger: "bg-danger text-white hover:bg-danger-hover active:bg-danger-pressed shadow-1",
   "icon-only":

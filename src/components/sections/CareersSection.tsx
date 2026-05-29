@@ -55,7 +55,7 @@ function OpeningCard({ opening }: { opening: Opening }) {
       )}
       <div className="flex flex-col gap-[var(--space-4)] p-[var(--space-6)]">
         <div className="flex flex-col gap-[var(--space-1)]">
-          <h3 className="text-heading-md text-text-primary">{opening.title}</h3>
+          <h3 className="font-display uppercase text-heading-md text-text-primary">{opening.title}</h3>
           <MetaRow opening={opening} />
         </div>
         <p className="text-body text-text-secondary">{opening.description}</p>
