@@ -1,7 +1,7 @@
 # NOTE: These are example/dummy roles wired up to exercise the careers
 # architecture. Replace `openings` with real listings (or set them to [] and
 # `accepting: false`) before launch.
-accepting: true
+accepting: false
 intro: >-
   Torpedo Software is uniquely focused on making a positive impact in people's
   lives. We have a culture of collaboration and innovation, a flexible PTO

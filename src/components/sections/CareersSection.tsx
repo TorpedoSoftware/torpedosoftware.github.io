@@ -1,7 +1,9 @@
-import { Mail } from "lucide-react";
+import { Briefcase, Mail } from "lucide-react";
 import type { CareersContent, Opening, SiteContent } from "@/content/schemas";
 import { Section } from "./Section";
 import { Button } from "@/components/primitives/Button";
+import { EmptyState } from "@/components/primitives/EmptyState";
+import { ScrollableRow } from "@/components/primitives/ScrollableRow";
 
 interface CareersSectionProps {
   careers: CareersContent;
@@ -42,9 +44,14 @@ function DetailList({ label, items }: { label: string; items?: string[] }) {
 
 function OpeningCard({ opening }: { opening: Opening }) {
   return (
-    <article className="flex flex-col overflow-hidden rounded-lg border border-[var(--color-border-subtle)] bg-surface">
+    <article className="flex w-[min(85vw,380px)] shrink-0 flex-col overflow-hidden rounded-lg border border-[var(--color-border-subtle)] bg-surface">
       {opening.image && (
-        <img src={opening.image} alt={opening.title} className="aspect-video w-full object-cover" />
+        <img
+          src={opening.image}
+          alt={opening.title}
+          draggable={false}
+          className="aspect-video w-full object-cover"
+        />
       )}
       <div className="flex flex-col gap-[var(--space-4)] p-[var(--space-6)]">
         <div className="flex flex-col gap-[var(--space-1)]">
@@ -52,7 +59,7 @@ function OpeningCard({ opening }: { opening: Opening }) {
           <MetaRow opening={opening} />
         </div>
         <p className="text-body text-text-secondary">{opening.description}</p>
-        <div className="grid gap-[var(--space-5)] sm:grid-cols-2">
+        <div className="flex flex-col gap-[var(--space-5)]">
           <DetailList label="Requirements" items={opening.requirements} />
           <DetailList label="Responsibilities" items={opening.responsibilities} />
         </div>
@@ -73,28 +80,38 @@ function OpeningCard({ opening }: { opening: Opening }) {
 export function CareersSection({ careers, site }: CareersSectionProps) {
   const hasOpenings = careers.accepting && careers.openings.length > 0;
 
+  const ctaButton = (variant: "primary" | "secondary") => (
+    <Button variant={variant} asChild>
+      <a href={`mailto:${site.email}`}>
+        <Mail size={18} strokeWidth={1.75} className="mr-1" />
+        {careers.ctaLabel}
+      </a>
+    </Button>
+  );
+
+  if (!hasOpenings) {
+    return (
+      <Section id="careers" title="Careers" intro={careers.intro}>
+        <div className="rounded-lg border border-[var(--color-border-subtle)] bg-surface">
+          <EmptyState
+            icon={<Briefcase size={64} strokeWidth={1.25} />}
+            title="No open roles right now"
+            description="We don't have any specific openings listed, but we're always glad to hear from talented people. If you'd be a good fit, reach out."
+            action={ctaButton("primary")}
+          />
+        </div>
+      </Section>
+    );
+  }
+
   return (
     <Section id="careers" title="Careers" intro={careers.intro}>
-      {hasOpenings ? (
-        <div className="grid gap-[var(--space-5)] md:grid-cols-2">
-          {careers.openings.map((o) => (
-            <OpeningCard key={o.title} opening={o} />
-          ))}
-        </div>
-      ) : (
-        <p className="max-w-2xl text-body-lg leading-7 text-text-secondary">
-          We don't have any specific openings listed right now, but we're always glad to hear from talented
-          people. If you'd be a good fit, reach out.
-        </p>
-      )}
-      <div>
-        <Button variant={hasOpenings ? "secondary" : "primary"} asChild>
-          <a href={`mailto:${site.email}`}>
-            <Mail size={18} strokeWidth={1.75} className="mr-1" />
-            {careers.ctaLabel}
-          </a>
-        </Button>
-      </div>
+      <ScrollableRow>
+        {careers.openings.map((o) => (
+          <OpeningCard key={o.title} opening={o} />
+        ))}
+      </ScrollableRow>
+      <div>{ctaButton("secondary")}</div>
     </Section>
   );
 }
