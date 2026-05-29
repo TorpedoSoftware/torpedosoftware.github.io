@@ -1,0 +1,259 @@
+/* Design tokens, single source of truth */
+
+:root {
+  /* ── Neutral ramp (§3.2) ── */
+  --color-canvas: #faf8f5;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface-sunken: #f3efe9;
+  --color-border-subtle: #eae4da;
+  --color-border: #d8d1c4;
+  --color-border-strong: #b8ae9c;
+  --color-text-primary: #0f1621;
+  --color-text-secondary: #4a5568;
+  --color-text-tertiary: #5a6577;
+  --color-text-disabled: #a0a8b5;
+
+  /* ── Brand & action (§3.3) ── Torpedo purple */
+  --color-primary: #3224a5;
+  --color-primary-hover: #3728ae;
+  --color-primary-pressed: #2c1d9c;
+  --color-primary-soft: #ece9fa;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #c68a3a;
+  --color-accent-soft: #f7ebd5;
+
+  /* ── Modal/Sheet overlay scrim (theme-aware via override below) ── */
+  --color-overlay: rgba(15, 22, 33, 0.48);
+
+  /* ── Semantic (§3.4) ── */
+  --color-success: #2f7d4f;
+  --color-success-soft: #e7f3ec;
+  --color-warning: #b3701a;
+  --color-warning-soft: #fbefd9;
+  --color-danger: #b3322c;
+  --color-danger-hover: #9a2a25;
+  --color-danger-pressed: #822320;
+  --color-danger-soft: #f7e3e2;
+  --color-info: #2c5daa;
+  --color-info-soft: #e5eefb;
+
+  /* ── Data viz categorical (§3.5) ── */
+  --viz-1: #0e6e6e;
+  --viz-2: #cc6677;
+  --viz-3: #4477aa;
+  --viz-4: #aa4499;
+  --viz-5: #882255;
+  --viz-6: #999933;
+  --viz-7: #88ccee;
+  --viz-8: #ddcc77;
+
+  /* ── Data viz band ramp (§3.5) ── */
+  --viz-band-outer: rgba(14, 110, 110, 0.18);
+  --viz-band-middle: rgba(14, 110, 110, 0.28);
+  --viz-band-inner: rgba(14, 110, 110, 0.42);
+  --viz-band-median: var(--color-primary);
+
+  /* ── Data viz sequential (§3.5) ── */
+  --viz-seq-1: #073838;
+  --viz-seq-2: #0e6e6e;
+  --viz-seq-3: #3f8d8d;
+  --viz-seq-4: #7aafaf;
+  --viz-seq-5: #a8c9c9;
+  --viz-seq-6: #d2e1e0;
+  --viz-seq-7: #efeee9;
+
+  /* ── Data viz diverging (§3.5) ── */
+  --viz-div-neg-2: #882255;
+  --viz-div-neg-1: #cc6677;
+  --viz-div-zero: #eee8e0;
+  --viz-div-pos-1: #4c9999;
+  --viz-div-pos-2: #0e6e6e;
+
+  /* ── Chart markers (§3.6) ── */
+  --color-marker-goal: #6b5645;
+  --color-marker-today: rgba(15, 22, 33, 0.6);
+  --color-marker-grid: rgba(234, 228, 218, 0.6);
+  --color-marker-reference: var(--color-text-tertiary);
+  --color-marker-crosshair: rgba(15, 22, 33, 0.4);
+
+  /* ── Skeleton shimmer (loading placeholders) ── */
+  --color-skeleton-base: #f3efe9;
+  --color-skeleton-shimmer: #eae4da;
+
+  /* ── Spacing (§5.1) ── */
+  --space-0: 0;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 32px;
+  --space-9: 40px;
+  --space-10: 48px;
+  --space-11: 64px;
+  --space-12: 80px;
+  --space-13: 96px;
+  --space-14: 128px;
+
+  /* ── Radius (§6.1) ── */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* ── Shadows (§6.3) ── */
+  --shadow-1: 0 1px 2px rgba(23, 18, 9, 0.04), 0 1px 1px rgba(23, 18, 9, 0.06);
+  --shadow-2: 0 2px 4px rgba(23, 18, 9, 0.05), 0 4px 8px rgba(23, 18, 9, 0.04);
+  --shadow-3: 0 4px 8px rgba(23, 18, 9, 0.06), 0 12px 24px rgba(23, 18, 9, 0.05);
+  --shadow-4: 0 8px 16px rgba(23, 18, 9, 0.07), 0 24px 48px rgba(23, 18, 9, 0.06);
+  --shadow-focus: 0 0 0 2px var(--color-canvas), 0 0 0 4px var(--color-primary);
+
+  /* ── Motion durations (§7.2) ── */
+  --motion-instant: 80ms;
+  --motion-fast: 160ms;
+  --motion-standard: 240ms;
+  --motion-moderate: 360ms;
+  --motion-slow: 600ms;
+  --motion-epic: 1200ms;
+
+  /* ── Easings (§7.3) ── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.64, 0, 0.78, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Typography (§4.1) ── */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Big Shoulders Display", "Inter", sans-serif;
+
+  /* ── Type scale (§4.2): composite tokens (size / line-height / weight / tracking) ── */
+  --text-display-xl-size: 64px;
+  --text-display-xl-line-height: 68px;
+  --text-display-xl-weight: 400;
+  --text-display-xl-tracking: -0.02em;
+
+  --text-display-lg-size: 48px;
+  --text-display-lg-line-height: 54px;
+  --text-display-lg-weight: 400;
+  --text-display-lg-tracking: -0.015em;
+
+  --text-display-md-size: 36px;
+  --text-display-md-line-height: 44px;
+  --text-display-md-weight: 500;
+  --text-display-md-tracking: -0.01em;
+
+  --text-heading-lg-size: 28px;
+  --text-heading-lg-line-height: 36px;
+  --text-heading-lg-weight: 600;
+  --text-heading-lg-tracking: -0.005em;
+
+  --text-heading-md-size: 22px;
+  --text-heading-md-line-height: 30px;
+  --text-heading-md-weight: 600;
+  --text-heading-md-tracking: -0.0025em;
+
+  --text-heading-sm-size: 18px;
+  --text-heading-sm-line-height: 26px;
+  --text-heading-sm-weight: 600;
+  --text-heading-sm-tracking: 0;
+
+  --text-body-lg-size: 17px;
+  --text-body-lg-line-height: 26px;
+  --text-body-lg-weight: 400;
+  --text-body-lg-tracking: 0;
+
+  --text-body-size: 15px;
+  --text-body-line-height: 24px;
+  --text-body-weight: 400;
+  --text-body-tracking: 0;
+
+  --text-body-sm-size: 13px;
+  --text-body-sm-line-height: 20px;
+  --text-body-sm-weight: 400;
+  --text-body-sm-tracking: 0.005em;
+
+  --text-caption-size: 12px;
+  --text-caption-line-height: 16px;
+  --text-caption-weight: 500;
+  --text-caption-tracking: 0.02em;
+
+  --text-overline-size: 11px;
+  --text-overline-line-height: 16px;
+  --text-overline-weight: 600;
+  --text-overline-tracking: 0.08em;
+
+  --text-metric-xl-size: 40px;
+  --text-metric-xl-line-height: 44px;
+  --text-metric-xl-weight: 600;
+  --text-metric-xl-tracking: -0.015em;
+
+  --text-metric-lg-size: 28px;
+  --text-metric-lg-line-height: 32px;
+  --text-metric-lg-weight: 600;
+  --text-metric-lg-tracking: -0.01em;
+
+  --text-metric-md-size: 20px;
+  --text-metric-md-line-height: 24px;
+  --text-metric-md-weight: 600;
+  --text-metric-md-tracking: -0.005em;
+}
+
+/* ── Dark theme (§3.2–3.6) ── */
+[data-theme="dark"] {
+  --color-canvas: #0f1012;
+  --color-surface: #17191c;
+  --color-surface-raised: #1d1f23;
+  --color-surface-sunken: #0a0b0d;
+  --color-border-subtle: #24272b;
+  --color-border: #313439;
+  --color-border-strong: #474b53;
+  --color-text-primary: #f2eee6;
+  --color-text-secondary: #b6b7ba;
+  --color-text-tertiary: #82858a;
+  --color-text-disabled: #555861;
+
+  /* Lightened Torpedo purple so primary text/UI passes WCAG AA on the dark
+     surface (#17191c). The brand #3224A5 is far too dark on a dark canvas. */
+  --color-primary: #4837c8;
+  --color-primary-hover: #5140d5;
+  --color-primary-pressed: #4130c1;
+  --color-primary-soft: #100e1a;
+  --color-primary-contrast: #ffffff;
+  --color-accent-soft: #382915;
+
+  /* Darker scrim for the dark canvas so the modal still reads as elevated. */
+  --color-overlay: rgba(0, 0, 0, 0.6);
+
+  --color-success: #4fb079;
+  --color-success-soft: #12281c;
+  --color-warning: #e0a050;
+  --color-warning-soft: #2a1f0c;
+  --color-danger: #e86058;
+  --color-danger-hover: #d34e46;
+  --color-danger-pressed: #b83d36;
+  --color-danger-soft: #2c1513;
+  --color-info: #6b93d6;
+  --color-info-soft: #0f1e36;
+
+  --viz-seq-6: #3a4a52;
+  --viz-seq-7: #1b252c;
+
+  --color-marker-goal: #b8a48e;
+  --color-marker-today: rgba(242, 238, 230, 0.6);
+  --color-marker-grid: rgba(36, 39, 43, 0.6);
+  --color-marker-crosshair: rgba(242, 238, 230, 0.4);
+
+  --color-skeleton-base: #1d1f23;
+  --color-skeleton-shimmer: #1f2226;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-3: 0 4px 8px rgba(0, 0, 0, 0.35), 0 12px 24px rgba(0, 0, 0, 0.3);
+  --shadow-4: 0 8px 16px rgba(0, 0, 0, 0.4), 0 24px 48px rgba(0, 0, 0, 0.35);
+}

@@ -1,0 +1,24 @@
+intro: >-
+  Torpedo Software is dedicated to bringing high quality educational games, open
+  source software, and powerful tools into your hands.
+paragraphs:
+  - >-
+    Our founder, Zack Williams (aka "boatbomber"), created this company to fund
+    projects such as Lua Learning and Fusion, with the hopes of empowering
+    Roblox developers, both present and future.
+  - >-
+    With millions of lives impacted and improved, we think that dream is being
+    realized. But we know there's still plenty more to be done.
+pillars:
+  - title: Educational Games
+    description: >-
+      We build free, interactive experiences that teach real skills. Learning
+      by doing, accessible to everyone, everywhere.
+  - title: Open Source
+    description: >-
+      We share the technology behind our products, contributing powerful,
+      battle-tested modules back to the developer community.
+  - title: Powerful Tools
+    description: >-
+      We craft tools that make developers faster and happier, from in-game IDEs
+      to the libraries that power our games.

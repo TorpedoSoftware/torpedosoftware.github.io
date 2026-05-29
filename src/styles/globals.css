@@ -1,0 +1,618 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./fonts.css";
+
+@theme {
+  /* Map tokens into Tailwind utilities */
+  --color-canvas: var(--color-canvas);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-surface-sunken: var(--color-surface-sunken);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-border-default: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  --color-text-disabled: var(--color-text-disabled);
+
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-pressed: var(--color-primary-pressed);
+  --color-primary-soft: var(--color-primary-soft);
+  --color-primary-contrast: var(--color-primary-contrast);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+
+  --color-success: var(--color-success);
+  --color-success-soft: var(--color-success-soft);
+  --color-warning: var(--color-warning);
+  --color-warning-soft: var(--color-warning-soft);
+  --color-danger: var(--color-danger);
+  --color-danger-hover: var(--color-danger-hover);
+  --color-danger-pressed: var(--color-danger-pressed);
+  --color-danger-soft: var(--color-danger-soft);
+  --color-info: var(--color-info);
+  --color-info-soft: var(--color-info-soft);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+
+  --shadow-1: var(--shadow-1);
+  --shadow-2: var(--shadow-2);
+  --shadow-3: var(--shadow-3);
+  --shadow-4: var(--shadow-4);
+  --shadow-focus: var(--shadow-focus);
+}
+
+/* ── Reset (supplements Tailwind v4 preflight) ── */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* ── Base typography ── */
+html {
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum", "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text-primary);
+  background-color: var(--color-canvas);
+}
+
+body {
+  line-height: 1.6;
+  min-height: 100dvh;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 50ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 50ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Type-scale utilities ── */
+@utility text-display-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-display-xl-size);
+  line-height: var(--text-display-xl-line-height);
+  font-weight: var(--text-display-xl-weight);
+  letter-spacing: var(--text-display-xl-tracking);
+  text-wrap: balance;
+}
+@utility text-display-lg {
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg-size);
+  line-height: var(--text-display-lg-line-height);
+  font-weight: var(--text-display-lg-weight);
+  letter-spacing: var(--text-display-lg-tracking);
+  text-wrap: balance;
+}
+@utility text-display-md {
+  font-family: var(--font-display);
+  font-size: var(--text-display-md-size);
+  line-height: var(--text-display-md-line-height);
+  font-weight: var(--text-display-md-weight);
+  letter-spacing: var(--text-display-md-tracking);
+  text-wrap: balance;
+}
+@utility text-heading-lg {
+  font-size: var(--text-heading-lg-size);
+  line-height: var(--text-heading-lg-line-height);
+  font-weight: var(--text-heading-lg-weight);
+  letter-spacing: var(--text-heading-lg-tracking);
+  text-wrap: balance;
+}
+@utility text-heading-md {
+  font-size: var(--text-heading-md-size);
+  line-height: var(--text-heading-md-line-height);
+  font-weight: var(--text-heading-md-weight);
+  letter-spacing: var(--text-heading-md-tracking);
+  text-wrap: balance;
+}
+@utility text-heading-sm {
+  font-size: var(--text-heading-sm-size);
+  line-height: var(--text-heading-sm-line-height);
+  font-weight: var(--text-heading-sm-weight);
+  letter-spacing: var(--text-heading-sm-tracking);
+  text-wrap: balance;
+}
+@utility text-body-lg {
+  font-size: var(--text-body-lg-size);
+  line-height: var(--text-body-lg-line-height);
+  font-weight: var(--text-body-lg-weight);
+  letter-spacing: var(--text-body-lg-tracking);
+}
+@utility text-body {
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
+  font-weight: var(--text-body-weight);
+  letter-spacing: var(--text-body-tracking);
+}
+@utility text-body-sm {
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-line-height);
+  font-weight: var(--text-body-sm-weight);
+  letter-spacing: var(--text-body-sm-tracking);
+}
+@utility text-caption {
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-line-height);
+  font-weight: var(--text-caption-weight);
+  letter-spacing: var(--text-caption-tracking);
+}
+@utility text-overline {
+  font-size: var(--text-overline-size);
+  line-height: var(--text-overline-line-height);
+  font-weight: var(--text-overline-weight);
+  letter-spacing: var(--text-overline-tracking);
+  text-transform: uppercase;
+}
+@utility text-metric-xl {
+  font-size: var(--text-metric-xl-size);
+  line-height: var(--text-metric-xl-line-height);
+  font-weight: var(--text-metric-xl-weight);
+  letter-spacing: var(--text-metric-xl-tracking);
+  font-variant-numeric: tabular-nums;
+}
+@utility text-metric-lg {
+  font-size: var(--text-metric-lg-size);
+  line-height: var(--text-metric-lg-line-height);
+  font-weight: var(--text-metric-lg-weight);
+  letter-spacing: var(--text-metric-lg-tracking);
+  font-variant-numeric: tabular-nums;
+}
+@utility text-metric-md {
+  font-size: var(--text-metric-md-size);
+  line-height: var(--text-metric-md-line-height);
+  font-weight: var(--text-metric-md-weight);
+  letter-spacing: var(--text-metric-md-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Soft right-edge fade. A transparency-mask cue that more content sits to
+ * the right of the visible area. Used on horizontally-scrollable tab strips
+ * where a hard truncation gives no hint there's more.
+ */
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, black 0, black calc(100% - 24px), transparent 100%);
+}
+
+/*
+ * Horizontal scroll affordance for overflow-x containers.
+ *
+ * Two `local`-attached gradients act as opaque masks pinned to the content's
+ * left/right edges; two `scroll`-attached shadow gradients sit above them and
+ * stay anchored to the viewport edges. When the user is scrolled to an edge,
+ * the matching local mask covers the shadow there. When scrolled away from
+ * an edge, the shadow shows through, signaling more content in that direction.
+ */
+@utility scroll-shadow-x {
+  background-image:
+    linear-gradient(to right, var(--color-surface), var(--color-surface)),
+    linear-gradient(to left, var(--color-surface), var(--color-surface)),
+    linear-gradient(to right, rgb(0 0 0 / 0.08), rgb(0 0 0 / 0)),
+    linear-gradient(to left, rgb(0 0 0 / 0.08), rgb(0 0 0 / 0));
+  background-position:
+    left center,
+    right center,
+    left center,
+    right center;
+  background-repeat: no-repeat;
+  background-size:
+    20px 100%,
+    20px 100%,
+    14px 100%,
+    14px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ── Hero float animation ── */
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@utility animate-hero-float {
+  animation: hero-float 4s var(--ease-in-out) infinite;
+  will-change: transform;
+}
+
+/* ── Emote float animation ── */
+@keyframes emote-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@utility animate-emote-float {
+  animation: emote-float 5s var(--ease-in-out) infinite;
+  will-change: transform;
+}
+
+/* ── Animated logo ── */
+/* Glide in from bottom-left, decelerating to a stop at the resting spot, hold
+   there for a beat, then build up speed and accelerate back out the top-right.
+   The per-segment timing functions are written as literal cubic-beziers rather
+   than the --ease-* tokens: a var() does NOT resolve for animation-timing-function
+   inside a @keyframes block (Chromium silently falls back to linear), so the
+   tokens would quietly flatten the easing. These values mirror --ease-out and
+   --ease-in from tokens.css, and torpedo-spin reuses the exact same curves so
+   the prop reads as what powers the travel. */
+@keyframes torpedo-move {
+  0% {
+    transform: translate3d(-125%, 125%, 0);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  22.222% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: linear;
+  }
+  77.778% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.64, 0, 0.78, 0);
+  }
+  100% {
+    transform: translate3d(125%, -125%, 0);
+  }
+}
+
+/* The body stays behind the ring until it has fully threaded through the
+   bottom-left of the ring, then flips to the front for the rest of the loop.
+   The whole body shares one z-index, so it cannot be nose-in-front while the
+   tail is still behind; flipping any earlier (e.g. when the nose alone reaches
+   the centre) paints the tail over the bottom ring band while it is still
+   crossing it. The entry eases out (fast first), so the body has cleared the
+   bottom ring and nearly settled by ~9.5% of the 9s cycle (~0.85s in). */
+@keyframes torpedo-body-cross {
+  0%,
+  9% {
+    z-index: 1;
+  }
+  9.5%,
+  100% {
+    z-index: 5;
+  }
+}
+
+/* The prop (tail) stays behind the ring through the entrance and the dwell,
+   then crosses to the front once the exit begins, so the tail follows the nose
+   through the ring rather than popping over it while parked. The exit eases in
+   (slow first), so the tail barely creeps until late and only reaches the ring
+   ~90% of the cycle (~8.1s), right as it starts rocketing out. */
+@keyframes torpedo-prop-cross {
+  0%,
+  89.5% {
+    z-index: 1;
+  }
+  90%,
+  100% {
+    z-index: 5;
+  }
+}
+
+/* The travel transform lives on a separate inner wrapper from the z-crossing.
+   The z-crossing has to ride the static clip wrappers (clip-path establishes a
+   stacking context, so an animated z-index inside it would be trapped below the
+   ring), while the transform has to ride a non-clipping element (a transform on
+   the clip wrapper would drag the clip along with the torpedo). Both run the
+   same 9s timeline (2s enter, 5s dwell, 2s exit) so they stay in lockstep. */
+@utility animate-torpedo-move {
+  animation: torpedo-move 9s linear infinite;
+  will-change: transform;
+}
+
+@utility animate-torpedo-body-z {
+  animation: torpedo-body-cross 9s linear infinite;
+}
+
+@utility animate-torpedo-prop-z {
+  animation: torpedo-prop-cross 9s linear infinite;
+}
+
+/* The prop spin is driven off the same 9s timeline and the same per-segment
+   easing as torpedo-move, so the propeller looks like it is what powers the
+   travel: it spins fast on entry and eases down to a dead stop as the torpedo
+   decelerates into its resting spot (0-22.222%, ease-out), holds still through
+   the dwell (22.222-77.778%), then spins back up as the torpedo accelerates out
+   (77.778-100%, ease-in). The values step 0 -> 720 -> 720 -> 1440 so the spin is
+   always clockwise and lands on a multiple of 360deg at rest, parking the blades
+   in the logo's drawn orientation; the off-screen loop wrap (1440 back to 0) is
+   the same orientation, so it is seamless. Reduced motion (animate-none on the
+   img) parks it at 0deg, which is that same resting orientation. */
+@keyframes torpedo-spin {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  22.222% {
+    transform: rotate(720deg);
+    animation-timing-function: linear;
+  }
+  77.778% {
+    transform: rotate(720deg);
+    animation-timing-function: cubic-bezier(0.64, 0, 0.78, 0);
+  }
+  100% {
+    transform: rotate(1440deg);
+  }
+}
+
+@utility animate-torpedo-spin {
+  animation: torpedo-spin 9s linear infinite;
+  will-change: transform;
+}
+
+/* Bubble trail churned up by the prop as the torpedo exits. The travel rides a
+   full-size (inset-0) wrapper, so translate percentages are read against the
+   emblem rather than the tiny bubble: --rise/--drift are real fractions of the
+   emblem. Each bubble's whole life is the first 2s of this 9s loop (0-22.222%):
+   it pops in, floats up (--rise) and fades over those 2 seconds, then stays
+   dormant (invisible, parked at origin) for the remaining 7s. A per-bubble delay
+   (set inline, ~8s) shifts that 2s life to land during the exit: the bubble pops
+   as the prop sweeps past its spawn point near the end of the exit, so its first
+   second plays while the torpedo finishes leaving and its second second plays
+   over the next loop's re-entry. The 9s period matches torpedo-move so the phase
+   stays locked. */
+@keyframes bubble-rise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  4% {
+    opacity: var(--bubble-opacity, 0.5);
+  }
+  22.222% {
+    opacity: 0;
+    transform: translate3d(var(--drift, 0%), var(--rise, -20%), 0);
+  }
+  22.5%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@utility animate-bubble-rise {
+  /* backwards fill so each bubble holds the 0% keyframe (opacity 0) during its
+     long animation-delay. Without it, the element shows its default un-animated
+     state through the delay, which for the .bubble dot is full opacity, so on
+     first load every bubble sits visible until its animation finally starts. */
+  animation: bubble-rise 9s linear infinite backwards;
+  will-change: transform, opacity;
+}
+
+/* Water-bubble look: a bright off-centre highlight fading to a faint rim. Sits
+   on the brand-purple disc (same image in both themes), so a white fill reads
+   on either canvas. */
+@utility bubble {
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgb(255 255 255 / 0.85),
+    rgb(255 255 255 / 0.12) 62%,
+    transparent 72%
+  );
+}
+
+/* ── Wordmark lettering ── */
+/* TORPEDO.png is baked in the brand purple and SOFTWARE.png in white, each of
+   which is unreadable on the opposite theme's canvas (the dark theme even
+   lightens --color-primary for exactly this reason). So rather than drawing the
+   PNGs, we use them as masks and paint the lettering with a theme-reactive
+   background-color, letting the caller pick the fill (brand purple for TORPEDO,
+   body-text color for SOFTWARE). */
+@utility mask-torpedo {
+  -webkit-mask: url("/brand/logo-pieces/TORPEDO.png") center / contain no-repeat;
+  mask: url("/brand/logo-pieces/TORPEDO.png") center / contain no-repeat;
+}
+
+@utility mask-software {
+  -webkit-mask: url("/brand/logo-pieces/SOFTWARE.png") center / contain no-repeat;
+  mask: url("/brand/logo-pieces/SOFTWARE.png") center / contain no-repeat;
+}
+
+/* ── Custom keyframes ── */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes indeterminate-progress {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(400%, 0, 0);
+  }
+}
+
+@utility animate-shimmer {
+  animation: shimmer 1.6s var(--ease-in-out) infinite;
+}
+
+@utility animate-indeterminate-progress {
+  animation: indeterminate-progress 1.5s var(--ease-in-out) infinite;
+  will-change: transform;
+}
+
+/* ── Motion utilities ── */
+@keyframes motion-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes motion-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes motion-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale3d(0.95, 0.95, 1);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes motion-zoom-out {
+  from {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  to {
+    opacity: 0;
+    transform: scale3d(0.95, 0.95, 1);
+  }
+}
+@keyframes motion-slide-from-bottom {
+  from {
+    transform: translate3d(0, 4px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+@keyframes motion-slide-from-top {
+  from {
+    transform: translate3d(0, -4px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+@keyframes motion-slide-from-right {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes motion-slide-to-right {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+@keyframes motion-slide-from-left {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes motion-slide-to-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@utility motion-fade-in {
+  animation: motion-fade-in var(--motion-fast) var(--ease-out);
+}
+@utility motion-fade-out {
+  animation: motion-fade-out var(--motion-fast) var(--ease-in);
+}
+@utility motion-zoom-in {
+  animation: motion-zoom-in var(--motion-standard) var(--ease-out);
+  will-change: transform;
+}
+@utility motion-zoom-out {
+  animation: motion-zoom-out var(--motion-standard) var(--ease-in);
+  will-change: transform;
+}
+@utility motion-slide-from-bottom {
+  animation: motion-slide-from-bottom var(--motion-fast) var(--ease-out);
+  will-change: transform;
+}
+@utility motion-slide-from-top {
+  animation: motion-slide-from-top var(--motion-fast) var(--ease-out);
+  will-change: transform;
+}
+@utility motion-slide-from-right {
+  animation: motion-slide-from-right var(--motion-standard) var(--ease-out);
+  will-change: transform;
+}
+@utility motion-slide-to-right {
+  animation: motion-slide-to-right var(--motion-standard) var(--ease-in);
+  will-change: transform;
+}
+@utility motion-slide-from-left {
+  animation: motion-slide-from-left var(--motion-standard) var(--ease-out);
+  will-change: transform;
+}
+@utility motion-slide-to-left {
+  animation: motion-slide-to-left var(--motion-standard) var(--ease-in);
+  will-change: transform;
+}
+
+/* ── Reduced transparency ── */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --viz-band-outer: rgba(14, 110, 110, 1);
+    --viz-band-middle: rgba(14, 110, 110, 1);
+    --viz-band-inner: rgba(14, 110, 110, 1);
+    --color-marker-today: var(--color-text-primary);
+    --color-marker-grid: var(--color-border-subtle);
+    --color-marker-crosshair: var(--color-text-primary);
+  }
+}

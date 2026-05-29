@@ -1,0 +1,47 @@
+# NOTE: These are example/dummy roles wired up to exercise the careers
+# architecture. Replace `openings` with real listings (or set them to [] and
+# `accepting: false`) before launch.
+accepting: true
+intro: >-
+  Torpedo Software is uniquely focused on making a positive impact in people's
+  lives. We have a culture of collaboration and innovation, a flexible PTO
+  policy, and a fully remote team. We believe a healthy work-life balance brings
+  out everyone's best work.
+ctaLabel: Get in touch
+openings:
+  - title: 2D Artist
+    type: Contractor, part time
+    location: Remote
+    duration: 1-2 months
+    image: /jobs/artist.jpg
+    description: >-
+      Expand the repertoire of in-game awards players can give one another in
+      Lua Learning. You'll create both static and animated award images that fit
+      our cartoony art style and stay readable at small resolutions.
+    requirements:
+      - Talented at 2D artistry
+      - Capable of cartoony drawings of Roblox characters
+      - Experienced with 2D animation spritesheets
+    responsibilities:
+      - Draw high-quality images for our products
+      - Animate spritesheets for our products
+      - Collaborate with our team to create fitting artwork
+  - title: Localization Translator
+    type: Contractor, part time
+    location: Remote
+    duration: 1-2 months
+    image: /jobs/translator.jpg
+    description: >-
+      Help make our products accessible to everyone, regardless of their native
+      language. You'll translate and localize our projects end to end, from
+      early localization through localization QA, for audiences such as
+      Spanish, Portuguese, and Russian speakers.
+    requirements:
+      - Fluent in English and your target language
+      - Certified in localization or translation
+      - Experienced with Roblox's translator dashboard and tooling
+      - Passionate about making education accessible
+    responsibilities:
+      - Write high-quality translations for our products
+      - Identify and remedy linguistic and localization issues
+      - Collaborate with our team to validate localization quality
