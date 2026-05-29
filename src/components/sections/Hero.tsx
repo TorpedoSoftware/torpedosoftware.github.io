@@ -2,6 +2,7 @@ import { Mail } from "lucide-react";
 import type { SiteContent } from "@/content/schemas";
 import { Button } from "@/components/primitives/Button";
 import { AnimatedWordmark } from "@/components/brand/AnimatedWordmark";
+import { SonarBackground } from "@/components/sections/SonarBackground";
 
 interface HeroProps {
   site: SiteContent;
@@ -25,7 +26,8 @@ function renderTagline(tagline: string, highlights: string[]) {
 export function Hero({ site }: HeroProps) {
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-[radial-gradient(ellipse_at_70%_50%,var(--color-primary-soft)_0%,var(--color-canvas)_70%)]">
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-[var(--space-8)] px-[var(--space-7)] pt-[var(--space-9)] pb-[var(--space-11)] lg:px-[var(--space-9)] lg:py-[var(--space-13)]">
+      <SonarBackground />
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center gap-[var(--space-8)] px-[var(--space-7)] pt-[var(--space-9)] pb-[var(--space-11)] lg:px-[var(--space-9)] lg:py-[var(--space-13)]">
         <h1 className="w-full max-w-[820px]">
           <AnimatedWordmark label={site.name} className="w-full" />
         </h1>

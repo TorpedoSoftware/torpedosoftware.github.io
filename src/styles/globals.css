@@ -476,6 +476,55 @@ body {
   will-change: transform;
 }
 
+/* ── Sonar (Hero background) ── */
+/* A slow, calm sweep of the radar beam. Linear and infinite so the rotation
+   never stutters; the trailing fade lives in the conic-gradient the beam is
+   painted with, not in the timing. */
+@keyframes sonar-sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-sonar-sweep {
+  animation: sonar-sweep 8s linear infinite;
+  will-change: transform;
+}
+
+/* A ping bloom: a quick gentle blip that pops in, peaks, and fades, then stays
+   dormant (invisible, parked) for the rest of the cycle. Each ping's inline
+   animation-delay is tuned so its short visible window lands as the beam sweeps
+   past its angle, and `backwards` fill holds the 0% (invisible) state through
+   that delay so a delayed ping never shows un-animated on first paint. Pings
+   whose period is a multiple of the 8s sweep only light every other / third
+   pass, so the contacts read as intermittent rather than metronomic. */
+@keyframes sonar-ping {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  4% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  14% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+@utility animate-sonar-ping {
+  animation: sonar-ping 8s linear infinite backwards;
+  will-change: transform, opacity;
+}
+
 /* ── Motion utilities ── */
 @keyframes motion-fade-in {
   from {
