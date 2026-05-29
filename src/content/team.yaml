@@ -1,0 +1,22 @@
+- name: Zack Williams
+  role: Founder + CEO
+  image: /team/zack.jpg
+  order: 1
+  links:
+    - title: Portfolio
+      url: https://www.boatbomber.com/
+    - title: GitHub
+      url: https://github.com/boatbomber
+    - title: LinkedIn
+      url: https://www.linkedin.com/in/zack-ovits/
+- name: Shifra L Williams
+  role: Technical Curriculum Writer + Brand Consultant
+  image: /team/shifra.jpg
+  order: 2
+  links:
+    - title: Portfolio
+      url: https://ho1yshif.github.io/
+    - title: GitHub
+      url: https://github.com/Ho1yShif/
+    - title: LinkedIn
+      url: https://www.linkedin.com/in/shifra-williams/

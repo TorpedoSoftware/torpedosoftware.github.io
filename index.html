@@ -1,37 +1,39 @@
----
-layout: default
-title: Home
-desc: Torpedo Software home page
-url: /
----
-<div id="About">
-	<h2>About Us</h2>
-	<p style="width: 90%;">Torpedo Software is dedicated to bringing high quality <span class="accent">educational</span> games, <span class="accent">open source</span> software, and <span class="accent">powerful tools</span> into your hands.
-		Our founder, Zack Ovits (aka "boatbomber"), created this company to fund projects such as <a href="https://www.rblx.co/Lua-Learning" target="_blank" rel="noopener noreferrer">Lua Learning</a> and <a href="https://www.github.com/Elttob/Fusion" target="_blank" rel="noopener noreferrer">Fusion</a> with the hopes of empowering Roblox developers, both present and future.
-		<br>With <span class="accent">millions</span> of lives impacted and improved, we think that dream is being realized- but we know there's still plenty more to be done.</p>
-</div>
-<hr>
-<div id="Team">
-	<h2>Meet The Team</h2>
-	<div class="team-grid">
-		{% assign team = site.team_members | sort: "display_order" %}
-		{% for member in team %}
-		<div style="display: flex; flex-direction: column;align-items: center;">
-			<br>
-			<figure class="tint">
-				<img src="{{ member.image }}" alt="{{ member.name }}" class="circle" style="width: 100%; height: 100%;">
-			</figure>
-			<h3 style="margin: 2px;text-align: center;">{{ member.name }}</h3>
-			<p style="margin: 2px;text-align: center;">{{ member.position }}</p>
-		</div>
-		{% endfor %}
-		<div style="display: flex; flex-direction: column;align-items: center;">
-			<br>
-			<figure class="tint">
-				<img src="/assets/team/silhouette.png" alt="silhouette" class="circle" style="width: 100%; height: 100%;">
-			</figure>
-			<h3 style="margin: 2px;text-align: center;">You?</h3>
-			<p style="margin: 2px;text-align: center;"><a href="/jobs">View Jobs</a></p>
-		</div>
-	</div>
-</div>
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/brand/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#3325A4" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Torpedo Software</title>
+    <meta
+      name="description"
+      content="Torpedo Software is dedicated to bringing high quality educational games, open source software, and powerful tools into your hands."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.torpedosoftware.llc/" />
+    <meta property="og:title" content="Torpedo Software" />
+    <meta
+      property="og:description"
+      content="Torpedo Software is dedicated to bringing high quality educational games, open source software, and powerful tools into your hands."
+    />
+    <meta property="og:image" content="https://www.torpedosoftware.llc/brand/splash.png" />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="847" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Torpedo Software" />
+    <meta
+      name="twitter:description"
+      content="Torpedo Software is dedicated to bringing high quality educational games, open source software, and powerful tools into your hands."
+    />
+    <meta name="twitter:image" content="https://www.torpedosoftware.llc/brand/splash.png" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+# The first entry renders as the featured project. The rest render in a grid.
+- title: Lua Learning
+  description: >-
+    A free-to-use platform for interactive learning, built as a Roblox game.
+    With an in-game IDE, custom curriculum, and sandboxed code execution,
+    students and inquiring minds learn by doing, through lessons, quizzes,
+    quests, and community-submitted tutorials. Founded by Zack Williams in 2018,
+    Lua Learning is built on three principles: interactive learning, community
+    collaboration, and being accessible to all.
+  primaryUrl: https://www.roblox.com/games/1334669864/Lua-Learning
+  image: /projects/lualearning.jpg
+  awards:
+    - title: Most Educational Game
+      year: 2020
+    - title: "#1 Top Rated PC Game"
+    - title: Best Education Experience nominee
+      year: 2024
+  links:
+    - title: Play Lua Learning
+      url: https://www.roblox.com/games/1334669864/Lua-Learning
+    - title: lualearning.org
+      url: https://www.lualearning.org/tutorials/discover
+- title: Fusion
+  description: >-
+    A powerful reactive UI framework for Roblox. Lua Learning was Fusion's
+    primary user and tester, helping develop and harden the framework even
+    before it was publicly available.
+  primaryUrl: https://github.com/dphfox/Fusion
+  links:
+    - title: View on GitHub
+      url: https://github.com/dphfox/Fusion
+- title: Open Source Libraries
+  description: >-
+    Much of the technology behind our products is open source, including a
+    RichText syntax highlighter, authenticated networking with ECDH + ChaCha20,
+    a cryptographic hash library, a live-updating values system, and more.
+  primaryUrl: https://github.com/boatbomber
+  links:
+    - title: Highlighter
+      url: https://github.com/boatbomber/Highlighter
+    - title: EncryptedNet
+      url: https://github.com/boatbomber/EncryptedNet
+    - title: HashLib
+      url: https://github.com/boatbomber/HashLib
+    - title: SheetValues
+      url: https://github.com/boatbomber/SheetValues
