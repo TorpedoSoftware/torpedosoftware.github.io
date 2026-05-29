@@ -1,5 +1,8 @@
 name: Torpedo Software
 tagline: Making waves by propelling new technologies
+taglineHighlights:
+  - waves
+  - propelling
 email: zack@boatbomber.com
 socials:
   - label: GitHub

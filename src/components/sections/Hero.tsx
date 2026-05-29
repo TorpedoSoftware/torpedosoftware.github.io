@@ -7,12 +7,11 @@ interface HeroProps {
   site: SiteContent;
 }
 
-const ACCENT_WORDS = new Set(["waves", "propelling"]);
-
-function renderTagline(tagline: string) {
+function renderTagline(tagline: string, highlights: string[]) {
+  const highlightsSet = new Set(highlights);
   return tagline.split(/(\s+)/).map((segment, index) => {
     const normalized = segment.toLowerCase().replace(/[^a-z]/g, "");
-    if (ACCENT_WORDS.has(normalized)) {
+    if (highlightsSet.has(normalized)) {
       return (
         <span key={index} className="text-primary">
           {segment}
@@ -31,7 +30,7 @@ export function Hero({ site }: HeroProps) {
           <AnimatedWordmark label={site.name} className="w-full" />
         </h1>
         <p className="text-heading-lg text-center font-display uppercase tracking-wide text-text-secondary">
-          {renderTagline(site.tagline)}
+          {renderTagline(site.tagline, site.taglineHighlights ?? [])}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-[var(--space-3)]">
           <Button variant="primary" asChild>

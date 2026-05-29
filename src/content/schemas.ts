@@ -13,6 +13,7 @@ const socialSchema = z.object({
 export const siteSchema = z.object({
   name: z.string(),
   tagline: z.string(),
+  taglineHighlights: z.optional(z.array(z.string())),
   email: z.email(),
   location: z.optional(z.string()),
   socials: z.array(socialSchema),
