@@ -141,9 +141,9 @@ const sweepLineStyle: CSSProperties = {
 
 export function SonarBackground() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div aria-hidden className="pointer-events-none absolute inset-0">
       <div
-        className="absolute top-[45%] left-1/2 aspect-square w-[min(140vh,1200px)] -translate-x-1/2 -translate-y-1/2 text-primary"
+        className="absolute top-1/2 left-1/2 aspect-square w-[min(140vh,1200px)] -translate-x-1/2 -translate-y-1/2 text-primary"
         style={{ WebkitMaskImage: FIELD_MASK, maskImage: FIELD_MASK }}
       >
         <div className="absolute inset-0 rounded-full opacity-[0.06]" style={ringsStyle} />
