@@ -44,7 +44,7 @@ const PINGS: Ping[] = [
 ];
 
 // Soft circular vignette so the field bleeds into the canvas with no hard edge.
-const FIELD_MASK = "radial-gradient(circle at center, black 0%, black 52%, transparent 80%)";
+const FIELD_MASK = "radial-gradient(circle at center, black 0%, black 20%, transparent 80%)";
 
 const ringsStyle: CSSProperties = {
   backgroundImage:
@@ -61,70 +61,10 @@ const crosshairStyle: CSSProperties = {
     "linear-gradient(to bottom, transparent calc(50% - 0.5px), currentColor calc(50% - 0.5px), currentColor calc(50% + 0.5px), transparent calc(50% + 0.5px)), linear-gradient(to right, transparent calc(50% - 0.5px), currentColor calc(50% - 0.5px), currentColor calc(50% + 0.5px), transparent calc(50% + 0.5px))",
 };
 
-// The sweep is two synced layers so the leading edge can read while the trail
-// stays smooth. The leading line is a thin conic spike at the seam, kept faint
-// and lightly blurred with soft edges so it reads as a gentle leading edge
-// rather than a hard laser (which was distracting, esp. in light).
-// The trail runs the full length behind the line, toward the rim, but its radial
-// alpha starts easing down early and over a long span so the glow dissolves
-// gradually as it approaches the rim rather than terminating in a hard tip. It is
-// kept narrow ANGULARLY (see the conic below) so the glow hugs the line instead
-// of fanning far out behind it.
-const sweepTrailMask = "radial-gradient(circle at center, black 0%, black 20%, transparent 72%)";
-
-// The trailing comet fade. A low-contrast gradient over this large an area only
-// resolves to ~40 distinct 8-bit levels, so it bands into visible wedges no
-// matter how it is shaped or blurred. The blur softens band edges; the dither
-// layer below removes them. Defined once so the dither can reuse it as a mask.
-const sweepTrailConic =
-  "conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 318deg, color-mix(in srgb, currentColor 2%, transparent) 332deg, color-mix(in srgb, currentColor 7%, transparent) 343deg, color-mix(in srgb, currentColor 18%, transparent) 350deg, color-mix(in srgb, currentColor 45%, transparent) 355deg, currentColor 359deg, transparent 360deg)";
-
-const sweepTrailStyle: CSSProperties = {
-  background: sweepTrailConic,
-  WebkitMaskImage: sweepTrailMask,
-  maskImage: sweepTrailMask,
-};
-
-// Dither confined to the trail, in the trail's own purple. A flat layer of
-// currentColor whose alpha IS high-frequency noise: speckled purple, not white
-// luminance grain. Laid over the banded trail it fills the gaps between the
-// 8-bit steps with purple speckle so the eye reads a smooth fade. The noise SVG
-// outputs white RGB with alpha = noise luminance, so it drives the purple
-// layer's alpha when used as a mask. Rasterized once and tiled = free per frame.
-// The feComponentTransfer steepens the alpha so the speckle reads as distinct
-// grain (more flair) rather than a faint haze.
-const ditherNoiseMask =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0.34 0.33 0.33 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='1.9' intercept='-0.45'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E\")";
-
-// Outer layer: rotates with the sweep and carries the trail-shaped mask, so the
-// dither window tracks the comet. Inner layer (below): counter-rotates by the
-// same amount so the purple grain texture stays fixed in place rather than
-// dragging around in a circle, while still being clipped to the rotating window.
-const sweepDitherClipStyle: CSSProperties = {
-  WebkitMaskImage: `${sweepTrailConic}, ${sweepTrailMask}`,
-  maskImage: `${sweepTrailConic}, ${sweepTrailMask}`,
-  WebkitMaskComposite: "source-in",
-  maskComposite: "intersect",
-};
-
-const sweepDitherGrainStyle: CSSProperties = {
-  background: "currentColor",
-  WebkitMaskImage: ditherNoiseMask,
-  maskImage: ditherNoiseMask,
-  animationDirection: "reverse",
-};
-
-// The leading line reaches toward the rim, but its radial alpha eases down early
-// and over a long span so the bright spoke tapers off smoothly instead of ending
-// in a hard, visible tip (which read as a harsh cutoff, esp. in light).
-const sweepLineMask = "radial-gradient(circle at center, black 0%, black 18%, transparent 68%)";
-
 const sweepLineStyle: CSSProperties = {
+  filter: "blur(2px)",
   background:
-    "conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 357.8deg, color-mix(in srgb, currentColor 50%, transparent) 359deg, currentColor 359.6deg, transparent 360deg)",
-  WebkitMaskImage: sweepLineMask,
-  maskImage: sweepLineMask,
-  filter: "blur(1.5px)",
+    "conic-gradient(from 0deg at 50% 50%, #00000000 0%, #00000000 90%, #3224A51C 95%, #3224A561 99%, #3224a5 100%)",
 };
 
 export function SonarBackground() {
@@ -139,19 +79,6 @@ export function SonarBackground() {
         <div className="absolute inset-0 opacity-[0.08]" style={crosshairStyle} />
         <div
           className="animate-sonar-sweep absolute inset-0 rounded-full opacity-[0.1] motion-reduce:hidden"
-          style={sweepTrailStyle}
-        />
-        <div
-          className="animate-sonar-sweep absolute inset-0 rounded-full motion-reduce:hidden"
-          style={sweepDitherClipStyle}
-        >
-          <div
-            className="animate-sonar-sweep absolute inset-[-30%] opacity-60"
-            style={sweepDitherGrainStyle}
-          />
-        </div>
-        <div
-          className="animate-sonar-sweep absolute inset-0 rounded-full opacity-[0.085] motion-reduce:hidden"
           style={sweepLineStyle}
         />
         {PINGS.map((ping, index) => (
