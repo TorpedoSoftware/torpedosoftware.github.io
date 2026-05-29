@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { useTheme } from "@/hooks/useTheme";
 
 /**
  * Decorative naval-sonar field for the Hero background: concentric range rings,
@@ -68,6 +69,8 @@ const sweepLineStyle: CSSProperties = {
 };
 
 export function SonarBackground() {
+  const { theme } = useTheme();
+
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0">
       <div
@@ -78,7 +81,10 @@ export function SonarBackground() {
         <div className="absolute inset-0 rounded-full opacity-[0.05]" style={spokesStyle} />
         <div className="absolute inset-0 opacity-[0.08]" style={crosshairStyle} />
         <div
-          className="animate-sonar-sweep absolute inset-0 rounded-full opacity-[0.1] motion-reduce:hidden"
+          className={
+            "animate-sonar-sweep absolute inset-0 rounded-full motion-reduce:hidden " +
+            (theme === "dark" ? "opacity-[0.3]" : "opacity-[0.2]")
+          }
           style={sweepLineStyle}
         />
         {PINGS.map((ping, index) => (
