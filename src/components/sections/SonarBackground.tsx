@@ -79,22 +79,10 @@ const sweepTrailMask = "radial-gradient(circle at center, black 0%, black 20%, t
 const sweepTrailConic =
   "conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 318deg, color-mix(in srgb, currentColor 2%, transparent) 332deg, color-mix(in srgb, currentColor 7%, transparent) 343deg, color-mix(in srgb, currentColor 18%, transparent) 350deg, color-mix(in srgb, currentColor 45%, transparent) 355deg, currentColor 359deg, transparent 360deg)";
 
-// The blur spreads the trail's bright leading edge slightly FORWARD past the
-// line, which looks wrong (glow should only sit behind the line). Mask is
-// applied after the filter, so this conic clips the trail to the half-circle
-// behind the line: opaque from just behind the seam round to the far side,
-// transparent ahead of it. The soft transition sits at the bottom (opposite the
-// line) where there is no trail, so it never shows.
-const sweepBehindLineMask =
-  "conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 160deg, black 200deg, black 360deg)";
-
 const sweepTrailStyle: CSSProperties = {
   background: sweepTrailConic,
-  WebkitMaskImage: `${sweepTrailMask}, ${sweepBehindLineMask}`,
-  maskImage: `${sweepTrailMask}, ${sweepBehindLineMask}`,
-  WebkitMaskComposite: "source-in",
-  maskComposite: "intersect",
-  filter: "blur(32px)",
+  WebkitMaskImage: sweepTrailMask,
+  maskImage: sweepTrailMask,
 };
 
 // Dither confined to the trail, in the trail's own purple. A flat layer of
