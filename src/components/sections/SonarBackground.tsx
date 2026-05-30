@@ -44,8 +44,11 @@ const PINGS: Ping[] = [
   { left: 31.6, top: 34.6, size: 7, delay: 6.89, duration: 24 },
 ];
 
-// Soft circular vignette so the field bleeds into the canvas with no hard edge.
-const FIELD_MASK = "radial-gradient(circle at center, black 0%, black 20%, transparent 80%)";
+// The soft circular vignette (the field fading into the canvas with no hard
+// edge) is a radial-gradient stroke, not a CSS mask: a mask makes WebRender
+// re-rasterize the grid through an offscreen pass every frame (a slow path on
+// tiled mobile GPUs), whereas a gradient is a cacheable paint. The
+// stop-color="currentColor" stops keep it theme-reactive. See sonar-fade below.
 
 // The static grid is drawn as SVG primitives rather than CSS gradients.
 // `repeating-conic-gradient` (an atan2 per pixel) and `repeating-radial-gradient`
@@ -104,11 +107,11 @@ function renderBeamTexture(): string | null {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, size, size);
 
-    // Carve the soft circular vignette into the texture's alpha (the same fade
-    // FIELD_MASK applies to the static grid). `destination-in` multiplies the
-    // existing pixels by this radial alpha, so the beam dissolves smoothly near
-    // the rim instead of ending at the hard edge of the circular clip. Baked in
-    // here, it costs nothing per frame, unlike a live CSS mask.
+    // Carve the soft circular vignette into the texture's alpha (the same radial
+    // falloff the grid gets from its sonar-fade stroke). `destination-in`
+    // multiplies the existing pixels by this radial alpha, so the beam dissolves
+    // smoothly near the rim instead of ending at the hard edge of the circular
+    // clip, and being baked in it costs nothing per frame.
     ctx.globalCompositeOperation = "destination-in";
     const fade = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
     fade.addColorStop(0, "#000000ff");
@@ -144,23 +147,34 @@ export function SonarBackground() {
     <div aria-hidden className="pointer-events-none absolute inset-0">
       <div className="absolute top-1/2 left-1/2 aspect-square w-[min(90vw,520px)] -translate-x-1/2 -translate-y-1/2 text-primary md:w-[min(140vh,1200px)]">
         {/* Static decoration drawn as cached SVG vector primitives (see note on
-            RING_RADII above). One mask gives the soft circular vignette; it is
-            paid once because nothing in here animates. */}
+            RING_RADII above). The sonar-fade radial-gradient stroke gives the
+            soft circular vignette; nothing here animates, so the whole layer
+            rasterizes once and caches. */}
         <svg
           viewBox="0 0 100 100"
           preserveAspectRatio="xMidYMid meet"
           fill="none"
-          stroke="currentColor"
+          stroke="url(#sonar-fade)"
           className="absolute inset-0 size-full"
           style={{
-            WebkitMaskImage: FIELD_MASK,
-            maskImage: FIELD_MASK,
-            // Promote to a cached GPU texture so scrolling translates the layer
-            // instead of repainting the grid + mask each frame.
+            // Promote to its own cached GPU layer so the rotating beam (a
+            // sibling) never dirties the grid's picture-cache slice.
             transform: "translateZ(0)",
             willChange: "transform",
           }}
         >
+          <defs>
+            {/* Alpha falls off with radius to fade the field into the canvas:
+                solid out to ~20% of the radius, gone by ~80% of the distance to
+                the farthest corner (r=70.71 in this 0-100 viewBox). currentColor
+                stops keep the grid brand-purple in both themes; the per-element
+                opacity below still scales each layer's faintness. */}
+            <radialGradient id="sonar-fade" gradientUnits="userSpaceOnUse" cx={50} cy={50} r={70.71}>
+              <stop offset={0} stopColor="currentColor" stopOpacity={1} />
+              <stop offset={0.2} stopColor="currentColor" stopOpacity={1} />
+              <stop offset={0.8} stopColor="currentColor" stopOpacity={0} />
+            </radialGradient>
+          </defs>
           {RING_RADII.map((r) => (
             <circle
               key={r}
@@ -202,21 +216,9 @@ export function SonarBackground() {
           />
         </svg>
         {beamTexture && (
-          // The rotating beam is a large, semi-transparent layer the GPU must
-          // re-blend over the whole field every composite. Firefox profiling on
-          // mobile showed the compositor (not the main thread) is the bottleneck:
-          // the main thread sits in nsRefreshDriver::FinishedWaitingForTransaction
-          // while DidComposite fires only every 30-130ms. It is composite
-          // fill-rate bound, a hardware ceiling no main-thread change can move
-          // (baking the texture, dropping the clip, and rendering at lower
-          // resolution then scaling up all made zero difference, the last being
-          // the fingerprint of a fill-rate wall). Shrinking it enough to fit
-          // makes it too small to look good, so the beam is desktop-only
-          // (hidden md:block). Phones keep the static grid + pings, which are
-          // cheap, and desktop has the fill rate to spare.
           <div
             className={
-              "animate-sonar-sweep absolute inset-0 hidden rounded-full motion-reduce:hidden md:block " +
+              "animate-sonar-sweep absolute inset-0 rounded-full motion-reduce:hidden " +
               (theme === "dark" ? "opacity-[0.3]" : "opacity-[0.2]")
             }
             style={{ backgroundImage: `url(${beamTexture})`, backgroundSize: "100% 100%" }}

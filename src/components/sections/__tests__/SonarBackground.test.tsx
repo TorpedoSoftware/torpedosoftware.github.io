@@ -33,13 +33,12 @@ describe("SonarBackground", () => {
     expect(root).toHaveClass("pointer-events-none");
   });
 
-  it("renders the desktop-only sweep beam when canvas conic gradients are available", () => {
+  it("renders the sweep beam when canvas conic gradients are available", () => {
     mockCanvas();
     const { container } = render(<SonarBackground />);
     const beam = container.querySelector(".animate-sonar-sweep");
     expect(beam).toBeInTheDocument();
-    // Beam is gated to md+ to spare mobile GPUs the per-frame fill.
-    expect(beam).toHaveClass("hidden", "md:block");
+    expect(beam).not.toHaveClass("hidden");
   });
 
   it("omits the beam when canvas conic gradients are unavailable", () => {
