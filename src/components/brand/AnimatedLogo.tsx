@@ -64,7 +64,7 @@ export function AnimatedLogo({ className, label = "Torpedo Software" }: Animated
   return (
     <div
       className={cn(
-        "relative isolate aspect-square overflow-hidden rounded-full [clip-path:circle(50%)]",
+        "relative isolate aspect-square overflow-hidden rounded-full [clip-path:circle(49.5%)]",
         className,
       )}
     >
@@ -124,7 +124,7 @@ export function AnimatedLogo({ className, label = "Torpedo Software" }: Animated
           0-99.8%, y 11.56-89.69% of the file), so the file is sized/placed to
           land the visible tail's bottom-left on the bbox bottom-left (13.375%,
           85.375%). */}
-      <div className="absolute inset-0 z-[1] [clip-path:circle(49.5%)] animate-torpedo-prop-z motion-reduce:animate-none">
+      <div className="absolute inset-0 z-[1] isolate animate-torpedo-prop-z motion-reduce:animate-none">
         <div className="absolute inset-0 animate-torpedo-move motion-reduce:animate-none">
           <img
             src={`${BASE}/prop.png`}
@@ -142,7 +142,7 @@ export function AnimatedLogo({ className, label = "Torpedo Software" }: Animated
           land the visible nose's top-right on the bbox top-right (84.875%,
           15.125%). Together with the prop's bottom-left, the visible art's
           combined bbox equals the Figma rect exactly. */}
-      <div className="absolute inset-0 z-[5] [clip-path:circle(49.5%)] animate-torpedo-body-z motion-reduce:animate-none">
+      <div className="absolute inset-0 z-[5] isolate animate-torpedo-body-z motion-reduce:animate-none">
         <div className="absolute inset-0 animate-torpedo-move motion-reduce:animate-none">
           <img
             src={`${BASE}/body.png`}

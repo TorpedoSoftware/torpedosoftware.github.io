@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/primitives/Button";
 import { Sheet } from "@/components/primitives/Sheet";
 import { ThemeToggle } from "./ThemeToggle";
+import { FpsMeter } from "./FpsMeter";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { cn } from "@/lib/cn";
 import { siteData } from "@/content/site-data";
@@ -106,6 +107,7 @@ export function SiteHeader() {
               <NavLink key={item.href} item={item} activeId={activeId} />
             ))}
           </nav>
+          {import.meta.env.DEV && <FpsMeter />}
           <ThemeToggle />
           <Button
             variant="icon-only"
